@@ -1,52 +1,34 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/header';
+import Navbar from './components/navbar/navbar';
+import Profile from './components/profile/profile';
+import Dialogs from './components/dialogs/dialogs';
+import { Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import Music from './components/music/music';
+import News from './components/news/news';
+import Settings from './components/settings/settings';
+import Friends from "./components/friends/friends";
 
-function App() {
+function App(props) {
+
   return (
+    <BrowserRouter>
     <div className="app-wrapper">
-      <header className="header">
-        <img src="https://sun9-26.userapi.com/impf/c848520/v848520707/17d659/oVusqQ_lGYs.jpg?size=810x1080&quality=96&sign=b349e57bb88e219d2d5a4dc65994e005&type=album"></img>
-      </header>
-      <nav className="nav">
-        <div >
-          <a>Profile</a>
-        </div>
-        <div >
-          <a>Messages</a>
-        </div>
-        <div >
-          <a>News</a>
-        </div>
-        <div >
-          <a>Music</a>
-        </div>
-        <div >
-          <a>Settings</a>
-        </div>
-      </nav>
-      <div className="content"> 
-        <img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"></img>
-        <div>
-          ava
-        </div>
-        <div>
-          my posts
-          <div>
-          new post
-          </div>
-          <div>
-            <div>
-              post 1
-            </div>
-            <div>
-              post 2
-            </div>
-          </div>
-        </div>
-        
+      <Header></Header>
+      <Navbar pr = {props.state}></Navbar>
+      <div className='app-wrapper-content'>
+
+        <Route path='/dialogs' render= {() => <Dialogs dialogs = {props.state.dialogsPage.dialogs} messages = {props.state.dialogsPage.messages}></Dialogs>}></Route>
+        <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}></Profile>}></Route>
+        <Route path='/news' render = {() => <News></News>}></Route>
+        <Route path='/music' render = {() => <Music></Music>}></Route>
+        <Route path='/settings' render = {() => <Settings></Settings>}></Route>
       </div>
     </div>
+    </BrowserRouter>
   );
 }
 
