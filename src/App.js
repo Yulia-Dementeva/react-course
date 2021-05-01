@@ -13,6 +13,7 @@ import Settings from './components/settings/settings';
 import Friends from "./components/friends/friends";
 
 function App(props) {
+  console.log(props)
 
   return (
     <BrowserRouter>
