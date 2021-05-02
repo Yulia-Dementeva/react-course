@@ -13,8 +13,6 @@ import Settings from './components/settings/settings';
 import Friends from "./components/friends/friends";
 
 function App(props) {
-  console.log(props)
-
   return (
     <BrowserRouter>
     <div className="app-wrapper">
@@ -26,15 +24,14 @@ function App(props) {
             <Dialogs
                 dialogs = {props.state.dialogsPage.dialogs}
                 messages = {props.state.dialogsPage.messages}
-                addMessage = {props.addMessage}
-                updateNewMessage = {props.updateNewMessage}>
+                newMessageText = {props.state.dialogsPage.newMessageText}
+                dispatch = {props.dispatch}>
             </Dialogs>}>
         </Route>
         <Route path='/profile' render={() =>
             <Profile
                 profilePage={props.state.profilePage}
-                addPost = {props.addPost}
-                updateNewPostText={props.updateNewPostText}>
+                dispatch = {props.dispatch}>
             </Profile>}>
         </Route>
         <Route path='/news' render = {() => <News></News>}></Route>

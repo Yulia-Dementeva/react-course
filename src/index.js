@@ -5,28 +5,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {addPost} from "./redux/state";
-import {updateNewPostText} from "./redux/state";
-import {updateNewMessage} from "./redux/state";
-import {addMessage} from "./redux/state";
 
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                state={store.state}
-                addPost = {store.addPost}
-                updateNewPostText={store.updateNewPostText}
-                addMessage = {store.addMessage}
-                updateNewMessage = {store.updateNewMessage}
+                state={store.getState()}
+                dispatch = {store.dispatch.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-rerenderEntireTree(store.state)
+rerenderEntireTree(store.getState())
 
 store.subscribe(rerenderEntireTree)
 
