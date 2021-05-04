@@ -11,8 +11,10 @@ import Music from './components/music/music';
 import News from './components/news/news';
 import Settings from './components/settings/settings';
 import Friends from "./components/friends/friends";
+import DialogsContainer from "./components/dialogs/dialogsContainer";
 
 function App(props) {
+
   return (
     <BrowserRouter>
     <div className="app-wrapper">
@@ -21,17 +23,15 @@ function App(props) {
       <div className='app-wrapper-content'>
 
         <Route path='/dialogs' render= {() =>
-            <Dialogs
-                dialogs = {props.state.dialogsPage.dialogs}
-                messages = {props.state.dialogsPage.messages}
-                newMessageText = {props.state.dialogsPage.newMessageText}
-                dispatch = {props.dispatch}>
-            </Dialogs>}>
+            <DialogsContainer
+                store={props.store}
+            >
+            </DialogsContainer>}>
         </Route>
         <Route path='/profile' render={() =>
             <Profile
-                profilePage={props.state.profilePage}
-                dispatch = {props.dispatch}>
+                store={props.store}
+            >
             </Profile>}>
         </Route>
         <Route path='/news' render = {() => <News></News>}></Route>
